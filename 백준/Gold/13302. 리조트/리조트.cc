@@ -31,7 +31,8 @@ int main()
             {
                 if(dp[i][j] != -1)
                 {
-                    dp[i+1][j] = dp[i][j];
+                    if(dp[i+1][j] == -1) dp[i+1][j] = dp[i][j];
+                    else dp[i+1][j] = min(dp[i+1][j], dp[i][j]);
                 }
             }
         }
