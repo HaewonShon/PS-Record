@@ -9,19 +9,37 @@ int main()
     int n;
     cin>>n;
 
-    int prev;
+    long long prev;
     cin>>prev;
-    int ans = 0;
+
+    long long int lsh = 0;
+    long long ans = 0;
     for(int i = 1; i < n; ++i)
     {
-        int val;
+        long long val;
         cin>>val;
 
-        while(val < prev)
+        if(prev > val)
         {
-            val <<= 1;
-            ++ans;
+            int requiredLsh = 0;
+            while(prev > (val << requiredLsh))
+            {
+                ++requiredLsh;
+            }
+
+            lsh += requiredLsh;
         }
+        else
+        {
+            int rsh = 0;
+            while(prev < (val >> rsh)) 
+            {
+                ++rsh;
+            }
+            lsh = max(lsh - rsh, (long long)0);
+        }
+
+        ans += lsh;
         prev = val;
     }
     cout<<ans;
