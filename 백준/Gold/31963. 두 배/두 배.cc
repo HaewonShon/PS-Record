@@ -21,21 +21,12 @@ int main()
 
         if(prev > val)
         {
-            int requiredLsh = 0;
-            while(prev > (val << requiredLsh))
-            {
-                ++requiredLsh;
-            }
-
+            int requiredLsh = ceil(log2((double)prev / (double)val));
             lsh += requiredLsh;
         }
         else
         {
-            int rsh = 0;
-            while(prev < (val >> rsh)) 
-            {
-                ++rsh;
-            }
+            int rsh = floor(log2((double)val / (double)prev));
             lsh = max(lsh - rsh, (long long)0);
         }
 
