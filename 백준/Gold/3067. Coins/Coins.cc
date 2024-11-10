@@ -26,9 +26,13 @@ int main()
 
         for(int i = 1; i <= n; ++i)
         {
-            memcpy(dp[i], dp[i-1], sizeof(dp[i]));
-
             int coin = coins[i];
+            for(int j = 0; j <= m; ++j)
+            {
+                dp[i][j] = dp[i-1][j];
+            }
+
+
             while(coin <= m)
             {
                 for(int j = coin; j <= m; ++j)
