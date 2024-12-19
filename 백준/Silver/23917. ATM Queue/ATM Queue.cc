@@ -15,21 +15,24 @@ int main()
         int n, x;
         cin>>n>>x;
 
-        vector<int> amount(n+1);
-        for(int i = 1; i <= n; ++i) cin>>amount[i];
+        vector<pair<int, int>> amount(n+1);
+        for(int i = 1; i <= n; ++i)
+        {
+            int a;
+            cin>>a;
+
+            amount[i] = {(a + x - 1) / x, i};
+        }
+
+        sort(amount.begin(), amount.end());
 
         queue<int> q;
         for(int i = 1; i <= n; ++i) q.push(i);
 
         cout<<"Case #"<<test<<": ";
-        while(!q.empty())
+        for(int i = 1; i <= n; ++i)
         {
-            int next = q.front();
-            q.pop();
-
-            amount[next] = max(amount[next] - x, 0);
-            if(amount[next] > 0) q.push(next);
-            else cout<<next<<" ";
+            cout<<amount[i].second<<" ";
         }
 
         cout<<"\n";
