@@ -10,7 +10,7 @@ long long GetValue(const string& s, long long repeat)
     }
     res *= repeat;
 
-    if(s.front() == ')' && s.back() == '(') res += repeat - 1;
+    if(s.front() == ')' && s.back() == '(') res += repeat - 1LL;
 
     return res;
 }
@@ -42,6 +42,6 @@ int main()
         return 0;
     }
 
-    long long possibleDrinkCount = (initVal - k + 1) / (k - drinkVal);
+    long long possibleDrinkCount = (initVal - k + 1LL) / (k - drinkVal) + (((initVal - k + 1LL) % (k - drinkVal)) == 0 ? 0 : 1);
     cout<<min(possibleDrinkCount, n);
 }
